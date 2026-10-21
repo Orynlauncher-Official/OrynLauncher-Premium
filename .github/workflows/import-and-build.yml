@@ -57,6 +57,7 @@ jobs:
           git add -A
           if ! git diff --cached --quiet; then
             git commit -m "Import MojoLauncher source as OrynLauncher Premium"
+            git pull --rebase origin main
             git push origin HEAD:main
           fi
 
