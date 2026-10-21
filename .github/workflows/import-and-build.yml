@@ -34,7 +34,7 @@ jobs:
           find . -type f \( -name '*.jks' -o -name '*.keystore' -o -name 'curseforge_key.txt' \) -not -path './.git/*' -delete
           sed -i '/storeFile file("debug.keystore")/d; /storePassword "android"/d; /keyAlias "androiddebugkey"/d; /keyPassword "android"/d; /signingConfig signingConfigs.customDebug/d' app_orynlauncher/build.gradle
           sed -i "s/rootProject.name='MojoLauncher'/rootProject.name='OrynLauncher Premium'/" settings.gradle
-          sed -i "s/namespace 'git.artdeell.mojo'/namespace 'com.orynlauncher.premium'/" app_orynlauncher/build.gradle
+           # Keep the original namespace because existing Java sources import git.artdeell.mojo.R; customize only applicationId.
           sed -i 's/applicationId "git.artdeell.mjlaunch"/applicationId "com.orynlauncher.premium"/' app_orynlauncher/build.gradle
           sed -i "s/'git.artdeell.mjlaunch.debug'/'com.orynlauncher.premium.debug'/g; s/'git.artdeell.mjlaunch.scoped.gamefolder.debug'/'com.orynlauncher.premium.scoped.gamefolder.debug'/g; s/'git.artdeell.mjlaunch.scoped.gamefolder'/'com.orynlauncher.premium.scoped.gamefolder'/g; s/'git.artdeell.mjlaunch'/'com.orynlauncher.premium'/g; s/'git.artdeell'/'com.orynlauncher.premium'/g" app_orynlauncher/build.gradle
           find app_orynlauncher/src/main/res -name 'strings.xml' -print0 | while IFS= read -r -d '' f; do
