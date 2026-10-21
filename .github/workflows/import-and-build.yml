@@ -27,7 +27,7 @@ jobs:
         run: |
           set -euo pipefail
           git clone --depth 1 --branch v3_openjdk --recurse-submodules --shallow-submodules https://github.com/MojoLauncher/MojoLauncher.git /tmp/mojo
-          rsync -a --delete --exclude='.git' --exclude='.github' --filter='protect /.github/workflows/import-and-build.yml' /tmp/mojo/ ./
+          rsync -a --delete --exclude='.git' --exclude='.github' --exclude='README.md' --filter='protect /.github/workflows/import-and-build.yml' /tmp/mojo/ ./
           # Rename the Android application module while preserving native libraries and submodules.
           mv app_mojo app_orynaluncher
           # Update module references throughout tracked text files, including Gradle settings.
