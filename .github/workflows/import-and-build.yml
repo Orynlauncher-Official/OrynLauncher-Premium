@@ -84,12 +84,12 @@ jobs:
           gradle-version: '8.14.5'
 
       - name: Build OrynLauncher Premium debug APK
-        run: gradle :app_orynlauncher:assembleFullDebug --stacktrace
+        run: gradle :app_orynaluncher:assembleFullDebug --stacktrace
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
         with:
           name: OrynLauncher-Premium-Debug-APK
-          path: app_orynlauncher/build/outputs/apk/full/debug/*.apk
+          path: app_orynaluncher/build/outputs/apk/full/debug/*.apk
           if-no-files-found: error
           retention-days: 14
