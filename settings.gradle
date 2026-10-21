@@ -15,7 +15,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name='OrynLauncher Premium'
-include ':app_mojo'
+include ':app_orynaluncher'
 
 include ':forge_installer'
 include ':NoBlocklist'

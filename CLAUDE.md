@@ -9,7 +9,7 @@ This file contains a policy and instructions for LLM (Large Language Models) age
 MojoLauncher is a launcher for managed runtime games using GLFW or SDL3. Currently it supports running Java & LWJGL-based games. The launcher targets Android as low as 5.0 (SDK 21) and old devices with only OpenGL ES 2.0 available as well as all modern Android devices.
 
 ### Structure
-The launcher code is located in `app_mojo` directory. GLFW, SDL3 provide WSI for games and present as submodules `sdl`, `glfw`. `mojoexec` submodule is used for sharing EGL/Vulkan handles and providing launcher-specific logic for mentioned WSI libraries. WSI libraries are wired up in the static `Platform` facade located in the application.
+The launcher code is located in `app_orynaluncher` directory. GLFW, SDL3 provide WSI for games and present as submodules `sdl`, `glfw`. `mojoexec` submodule is used for sharing EGL/Vulkan handles and providing launcher-specific logic for mentioned WSI libraries. WSI libraries are wired up in the static `Platform` facade located in the application.
 
 AWT is implemented through `pojavexec_awt` on the native side and `caciocavallo` project on the JVM side. AWT is available either in-game before SDL/GLFW do a takeover or when launching the JAR installer.
 

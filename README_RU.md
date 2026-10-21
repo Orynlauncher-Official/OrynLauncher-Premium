@@ -2,7 +2,7 @@
 
 <a href="./README.md">Readme in English</a>
 
-<img src="./app_mojo/src/main/assets/mojo.png" align="left" width="150" height="150" alt="MojoLauncher logo">
+<img src="./app_orynaluncher/src/main/assets/mojo.png" align="left" width="150" height="150" alt="MojoLauncher logo">
 
 [![Android CI](https://github.com/MojoLauncher/MojoLauncher/workflows/Android%20CI/badge.svg)](https://github.com/MojoLauncher/MojoLauncher/actions)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/MojoLauncher/MojoLauncher)](https://github.com/MojoLauncher/MojoLauncher/actions)
@@ -42,7 +42,7 @@
 ## Сборка  
 * Скомпилируйте лаунчер (все необходимые компоненты скачаются автоматически)
 ```
-./gradlew :app_mojo:assembleDebug
+./gradlew :app_orynaluncher:assembleDebug
 ```
 При сборке на Windows:
 * Замените `./gradlew` на `.\gradlew.bat`
