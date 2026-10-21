@@ -1,92 +1,83 @@
-<H1 align="center">MojoLauncher (a.k.a. MJLauncher)</H1>
+<div align="center">
 
-<a href="./README_RU.md">Readme на русском</a>
+<img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:09090b,45:172554,100:38bdf8&text=OrynLauncher%20Premium&fontColor=ffffff&fontSize=42&fontAlignY=38&desc=Minecraft%20Java%20Edition%20on%20Android&descAlignY=59&descSize=16&animation=fadeIn" width="100%" alt="OrynLauncher Premium animated banner" />
 
-<img src="./app_mojo/src/main/assets/mojo.png" align="left" width="150" height="150" alt="MojoLauncher logo">
+<a href="https://github.com/Orynlauncher-Official/OrynLauncher-Premium">
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=18&duration=2800&pause=900&color=38BDF8&center=true&vCenter=true&width=650&lines=Your+Minecraft.+Your+Launcher.;Java+Edition+on+Android.;Built+for+the+OrynLauncher+community." alt="Animated OrynLauncher Premium tagline" />
+</a>
 
-[![Android CI](https://github.com/MojoLauncher/MojoLauncher/workflows/Android%20CI/badge.svg)](https://github.com/MojoLauncher/MojoLauncher/actions)
-[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/MojoLauncher/MojoLauncher)](https://github.com/MojoLauncher/MojoLauncher/actions)
-[![Discord](https://img.shields.io/discord/1365346109131722753.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/VHdwQFsaGX)
+<br/>
 
-* MojoLauncher is a launcher, based on [PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher), that allows you to play Minecraft: Java Edition on your Android device!
+![Android](https://img.shields.io/badge/Platform-Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+![Minecraft](https://img.shields.io/badge/Game-Minecraft%20Java-45A1FF?style=for-the-badge&logo=minecraft&logoColor=white)
+![Status](https://img.shields.io/badge/Project-Open%20Source-38BDF8?style=for-the-badge&logo=github&logoColor=white)
 
-* It can run almost every version of Minecraft, allowing you to use .jar only installers to install modloaders such as [Forge](https://files.minecraftforge.net/) and [Fabric](http://fabricmc.net/) and mods like [OptiFine](https://optifine.net).
+<br/>
 
-## Navigation
-- [Introduction](#introduction)
-- [Getting MojoLauncher](#getting-mojolauncher)
-- [Building](#building) 
-- [Current roadmap](#current-roadmap) 
-- [License](#license) 
-- [Contributing](#contributing) 
-- [Credits & Third party components and their licenses](#credits--third-party-components-and-their-licenses-if-available)
+**OrynLauncher Premium** is an Android launcher project focused on bringing the Minecraft: Java Edition experience to mobile devices.
 
-## Introduction 
-* MojoLauncher is a Minecraft: Java Edition launcher for Android based on [PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher)
-* This launcher can launch almost all available Minecraft versions ranging from rd-132211 to 26.x snapshots (including Combat Test versions). 
-* Modding via Forge and Fabric are also supported. 
+[Explore the repository](https://github.com/Orynlauncher-Official/OrynLauncher-Premium) · [Report a bug](https://github.com/Orynlauncher-Official/OrynLauncher-Premium/issues) · [View build runs](https://github.com/Orynlauncher-Official/OrynLauncher-Premium/actions)
 
-## Getting MojoLauncher
+</div>
 
-You can get MojoLauncher via four methods:
+---
 
-1. You can get the prebuilt app from the [releases section](http://github.com/mojolauncher/mojolauncher/releases).
+## ✨ Project Highlights
 
-2. You can get it from Google Play by clicking on this badge:
-[![Google Play](https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=git.artdeell.mjlaunch)
+- 📱 **Android-first** — designed for playing on supported Android devices.
+- 🧩 **Minecraft Java Edition** — launcher source based on the MojoLauncher/PojavLauncher ecosystem.
+- 🛠️ **Open development** — source, build workflow, and improvements tracked here.
+- 🌌 **Oryn identity** — an independent OrynLauncher-branded project.
 
-3. You can get early builds from [Github Actions](http://github.com/mojolauncher/mojolauncher/actions).
+> **Project status:** Work in progress. Features, device compatibility, and build availability may change as development continues. Check the repository's Actions and Releases pages for the latest verified builds.
 
-4. You can [build](#building) from source.
-## Building   
-* Build the launcher (it will automatically download all required components)
-```
-./gradlew :app_mojo:assembleDebug
-```
-If you are building on Windows:
-* Replace `./gradlew` with `.\gradlew.bat`
-* Make sure `mojoexec`, `sdl`, `glfw` are symlinked into `app_pojavlauncher/src/main/jni/`
+## 🚀 Getting Started
 
-## Current roadmap
-- [x] Instance system in favor of profiles
-- [x] Out-of-the box 1.21.5 support
-- [x] mrpack/CurseForge zip import
-- [x] LTW: enable compute shader/image extensions
-- [ ] LTW: resolve issues with Create
-- [ ] LTW: switch to a color-renderable format for framebuffers
-- [ ] Modpack/mod management tool
-- [ ] MMC-compatible instance import
-- [ ] Vintage Story support
-- [ ] Implement common native library standard
+1. Open the [Actions page](https://github.com/Orynlauncher-Official/OrynLauncher-Premium/actions) to check available build runs.
+2. If a successful workflow publishes an APK artifact, open that run and download its artifact.
+3. Install only builds you trust, and back up important game files before testing development builds.
 
-## Known Issues
-- Some physical mice may have very slow mouse speed
-- On Holy GL4ES, large texture atlases may be distorted (resulting in stretched/blocky textures in modpacks)
-- Probably more, that's why we have a bug tracker ;) 
+**No APK is promised by this README:** a downloadable build is available only when a successful workflow or release has actually published one.
 
-## License
-- MojoLauncher is licensed under [GNU LGPLv3](https://github.com/MojoLauncher/MojoLauncher/blob/v3_openjdk/LICENSE).
+## 🧱 Building from Source
 
-## Contributing
-Contributions are welcome! We appreciate any type of contribution, not only code. For example, you can help the wiki shape up. You can help the [translation](https://mojolauncher.ru/translate/translator.html) too!
+This project uses the Android/Gradle toolchain and native components from its upstream launcher source.
 
+1. Clone this repository.
+2. Open it in a compatible Android development environment or use the included Gradle wrapper.
+3. Follow the build task and toolchain requirements defined in the repository's Gradle files and GitHub Actions workflow.
 
-Any code change to this repository should be submitted as a pull request. The description should explain what the code does and give steps to execute it.
+Build commands can change while the source import and branding work is being finalized. Check the current workflow before assuming a specific Gradle task or APK filename.
 
-## Third party components, licenses and sources (when applicable)
-- [PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher): [GNU LGPLv3 License](https://github.com/PojavLauncherTeam/PojavLauncher/blob/v3_openjdk/LICENSE)
-- Android Support Libraries: [Apache License 2.0](https://android.googlesource.com/platform/prebuilts/maven_repo/android/+/master/NOTICE.txt).
-- [Holy GL4ES](https://github.com/artdeell/gl4es_extra_extra/): [MIT License](https://github.com/ptitSeb/gl4es/blob/master/LICENSE).
-- [OpenJDK](https://github.com/PojavLauncherTeam/openjdk-multiarch-jdk8u): [GNU GPLv2 License](https://openjdk.java.net/legal/gplv2+ce.html).
-- [GLFW](https://github.com/MojoLauncher/glfw): [zlib license](https://github.com/MojoLauncher/glfw/blob/glfw34/LICENSE.md)
-- [SDL](https://github.com/MojoLauncher/MojoSDL): [zlib license](https://github.com/MojoLauncher/MojoSDL/blob/main/LICENSE.txt)
-- [LWJGL2-GLFW](https://github.com/MojoLauncher/lwjgl2-glfw): 3-Clause BSD license
-- [LWJGL3](https://github.com/LWJGL/lwjgl3): [BSD-3 License](https://github.com/LWJGL/lwjgl3/blob/master/LICENSE.md).
-- [mojoexec](https://github.com/MojoLauncher/mojoexec): [MIT License](https://github.com/MojoLauncher/mojoexec/blob/master/LICENSE)
-- [Mesa 3D Graphics Library](https://gitlab.freedesktop.org/mesa/mesa): [MIT License](https://docs.mesa3d.org/license.html).
-- [pro-grade](https://github.com/pro-grade/pro-grade) (Java sandboxing security manager): [Apache License 2.0](https://github.com/pro-grade/pro-grade/blob/master/LICENSE.txt).
-- [bhook](https://github.com/bytedance/bhook) (Used for exit code trapping): [MIT license](https://github.com/bytedance/bhook/blob/main/LICENSE).
-- [Authlib-Injector](https://github.com/yushijinhun/authlib-injector) (Used for authorisation via ely.by): [AGPL-3.0](https://github.com/yushijinhun/authlib-injector/blob/develop/LICENSE).
-- [alsoft](https://github.com/kcat/openal-soft/) (Audio output library): [GNU Library General Public License](https://github.com/kcat/openal-soft/blob/master/COPYING) and [Modified PFFFT](https://github.com/kcat/openal-soft/blob/master/LICENSE-pffft).
-- [oboe](https://github.com/google/oboe): [Apache License 2.0](https://github.com/google/oboe/blob/main/LICENSE).
-- Thanks to [Mineskin](https://mineskin.eu/) for providing Minecraft avatars.
+## 🗺️ Development
+
+OrynLauncher Premium is under active development. UI work, branding, compatibility checks, and build stability are being worked on incrementally.
+
+- [Open issues](https://github.com/Orynlauncher-Official/OrynLauncher-Premium/issues)
+- [Review source and commits](https://github.com/Orynlauncher-Official/OrynLauncher-Premium)
+- [Check GitHub Actions](https://github.com/Orynlauncher-Official/OrynLauncher-Premium/actions)
+
+Bug reports are most useful when they include the device model, Android version, steps to reproduce, and relevant logs. **Do not post Microsoft account tokens, passwords, or other secrets in issues.**
+
+## 🙌 Credits & Licensing
+
+OrynLauncher Premium builds on the work of the upstream **MojoLauncher** and **PojavLauncher** projects and their contributors, along with third-party libraries and native components.
+
+This repository must retain the upstream license files, copyright notices, and applicable third-party license notices. Please review the included `LICENSE` and component notices before redistributing modified builds. Upstream source and licensing information:
+
+- [MojoLauncher source](https://github.com/MojoLauncher/MojoLauncher)
+- [PojavLauncher source](https://github.com/PojavLauncherTeam/PojavLauncher)
+
+OrynLauncher branding does not imply ownership of upstream code or third-party components.
+
+---
+
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=rect&height=3&color=0:38bdf8,50:1d4ed8,100:09090b" width="100%" alt="" />
+
+**Made for the Minecraft-on-Android community.**
+
+<sub>OrynLauncher Premium · Community project · Contributions welcome</sub>
+
+</div>
