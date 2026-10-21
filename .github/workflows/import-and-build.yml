@@ -27,7 +27,7 @@ jobs:
         run: |
           set -euo pipefail
           git clone --depth 1 --branch v3_openjdk --recurse-submodules --shallow-submodules https://github.com/MojoLauncher/MojoLauncher.git /tmp/mojo
-          rsync -a --delete --exclude='/.git/' /tmp/mojo/ ./
+          rsync -a --delete --exclude='/.git/' --filter='protect /.github/workflows/import-and-build.yml' /tmp/mojo/ ./
           # Never copy upstream signing keystores or local API-key files into this repository.
           find . -type f \( -name '*.jks' -o -name '*.keystore' -o -name 'curseforge_key.txt' \) -not -path './.git/*' -delete
           # Use Android's generated debug signing key; do not commit upstream signing material.
