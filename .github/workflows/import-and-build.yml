@@ -23,15 +23,16 @@ jobs:
           fetch-depth: 0
 
       - name: Import MojoLauncher source and rename app module
+        if: github.event_name == 'workflow_dispatch'
         shell: bash
         run: |
           set -euo pipefail
           git clone --depth 1 --branch v3_openjdk --recurse-submodules --shallow-submodules https://github.com/MojoLauncher/MojoLauncher.git /tmp/mojo
           rsync -a --delete --exclude='.git' --exclude='.github' --exclude='README.md' --filter='protect /.github/workflows/import-and-build.yml' /tmp/mojo/ ./
           # Rename the Android application module while preserving native libraries and submodules.
-          mv app_orynlauncher app_orynlauncher
+          mv app_mojo app_orynaluncher
           # Update module references throughout tracked text files, including Gradle settings.
-          grep -Ilr --exclude-dir=.git --exclude-dir=.github 'app_orynlauncher' . | xargs -r sed -i 's/app_orynlauncher/app_orynlauncher/g'
+          grep -Ilr --exclude-dir=.git --exclude-dir=.github 'app_mojo' . | xargs -r sed -i 's/app_mojo/app_orynaluncher/g'
           # Never copy upstream signing keystores or local API-key files into this repository.
           find . -type f \( -name '*.jks' -o -name '*.keystore' -o -name 'curseforge_key.txt' \) -not -path './.git/*' -delete
           # Use Android's generated debug signing key; do not commit upstream signing material.
@@ -60,7 +61,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           if ! git diff --cached --quiet; then
-            git commit -m "Rename app_orynlauncher module to app_orynlauncher"
+            git commit -m "Import Mojo source and prepare OrynLauncher Premium"
             git pull --rebase origin main
             git push origin HEAD:main
           fi
