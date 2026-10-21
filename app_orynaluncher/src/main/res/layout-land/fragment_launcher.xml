@@ -176,6 +176,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/actions_center"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
             <com.kdt.mcgui.LauncherMenuButton
                 android:id="@+id/news_button"
                 style="@style/LauncherMenuButton.Universal"
@@ -191,8 +198,8 @@
                 style="@style/LauncherFragment_Divider"
                 android:layout_marginVertical="@dimen/padding_heavy"
                 app:layout_constraintTop_toTopOf="@id/news_button"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/actions_center"
+                app:layout_constraintEnd_toEndOf="@id/actions_center"
                 app:layout_constraintBottom_toBottomOf="@id/news_button" />
 
             <com.kdt.mcgui.LauncherMenuButton
