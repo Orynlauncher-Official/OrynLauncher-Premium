@@ -58,10 +58,10 @@ Development builds may contain bugs and are not guaranteed to work on every devi
 
 ### Build task
 
-The Android application module is named `app_orynaluncher`. The CI workflow currently attempts to build the full debug variant with:
+The Android application module is named `app_orynlauncher`. The CI workflow currently attempts to build the full debug variant with:
 
 ```bash
-gradle :app_orynaluncher:assembleFullDebug
+gradle :app_orynlauncher:assembleFullDebug
 ```
 
 For a reproducible build, review the current [build workflow](https://github.com/Orynlauncher-Official/OrynLauncher-Premium/blob/main/.github/workflows/import-and-build.yml) and the Gradle configuration before building locally. A successful build must be confirmed in the Actions run; the command shown here is not a claim that the latest source currently builds.
