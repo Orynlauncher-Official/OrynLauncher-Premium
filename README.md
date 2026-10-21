@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=venom&height=280&color=0:020617,25:0F172A,55:0369A1,80:2563EB,100:67E8F9&text=ORYNLAUNCHER%20PREMIUM&fontColor=FFFFFF&fontSize=42&fontAlignY=45&desc=MINECRAFT%20JAVA%20EDITION%20%E2%80%A2%20ANDROID&descSize=15&descAlignY=65&animation=twinkling&stroke=67E8F9&strokeWidth=1" width="100%" alt="Animated OrynLauncher Premium 3D-inspired banner" />
+<img src="https://capsule-render.vercel.app/api?type=venom&height=280&color=0:020617,25:0F172A,55:0369A1,80:2563EB,100:67E8F9&text=ORYNLAUNCHER&fontColor=FFFFFF&fontSize=42&fontAlignY=45&desc=MINECRAFT%20JAVA%20EDITION%20%E2%80%A2%20ANDROID&descSize=15&descAlignY=65&animation=twinkling&stroke=67E8F9&strokeWidth=1" width="100%" alt="Animated OrynLauncher Premium 3D-inspired banner" />
 
 <br/>
 
@@ -27,7 +27,7 @@
 
 ## ✦ A Different Way to Play
 
-**OrynLauncher Premium** is an Android launcher project focused on bringing the Minecraft: Java Edition experience to supported mobile devices.
+**OrynLauncher** is an Android launcher project focused on bringing the Minecraft: Java Edition experience to supported mobile devices.
 
 A distinctive Oryn identity, an Android-first direction, and open-source foundations — developed one improvement at a time.
 
@@ -56,7 +56,7 @@ Built from existing open-source launcher work, with upstream components, submodu
 <td width="50%" valign="top">
 
 ### 💠 Oryn Identity
-The project uses the OrynLauncher Premium name and package identity while the launcher continues to be developed.
+The project uses the OrynLauncher name and package identity while the launcher continues to be developed.
 
 </td>
 <td width="50%" valign="top">
@@ -107,7 +107,7 @@ Before building locally, review the [CI workflow](https://github.com/Orynlaunche
 
 | Resource | Link |
 | --- | --- |
-| Source repository | [OrynLauncher Premium](https://github.com/Orynlauncher-Official/OrynLauncher-Premium) |
+| Source repository | [OrynLauncher](https://github.com/Orynlauncher-Official/OrynLauncher-Premium) |
 | Build workflow | [GitHub Actions](https://github.com/Orynlauncher-Official/OrynLauncher-Premium/actions) |
 | Releases and artifacts | [Releases](https://github.com/Orynlauncher-Official/OrynLauncher-Premium/releases) |
 | Report a bug | [Open an issue](https://github.com/Orynlauncher-Official/OrynLauncher-Premium/issues/new) |
@@ -131,7 +131,7 @@ Contributions, testing, and well-documented bug reports are welcome. Keep change
 
 ## 📜 Credits & Licensing
 
-OrynLauncher Premium is an independent project derived from or incorporating components of existing open-source launcher projects. Thanks to the original maintainers and contributors of [MojoLauncher](https://github.com/MojoLauncher/MojoLauncher), [PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher), and other included projects.
+OrynLauncher is an independent project derived from or incorporating components of existing open-source launcher projects. Thanks to the original maintainers and contributors of [MojoLauncher](https://github.com/MojoLauncher/MojoLauncher), [PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher), and other included projects.
 
 Upstream source, native components, and third-party dependencies retain their own copyright notices and license obligations. The upstream launcher includes LGPL-licensed code; review the repository's `LICENSE`, bundled notices, and relevant component licenses before modifying or redistributing the project. OrynLauncher branding does not imply ownership of upstream code or official affiliation with upstream projects.
 
@@ -141,7 +141,7 @@ Upstream source, native components, and third-party dependencies retain their ow
 
 <img src="https://capsule-render.vercel.app/api?type=waving&section=footer&height=130&color=0:67E8F9,45:1D4ED8,100:020617" width="100%" alt="Animated OrynLauncher footer" />
 
-<sub><strong>ORYNLAUNCHER PREMIUM</strong> · Made for the Minecraft-on-Android community</sub>
+<sub><strong>ORYNLAUNCHER</strong> · Made for the Minecraft-on-Android community</sub>
 
 <br/>
 
