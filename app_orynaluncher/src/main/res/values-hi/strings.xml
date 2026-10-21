@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <!-- App name part -->
-    <string name="app_short_name">OrynLauncher Premium</string>
+    <string name="app_short_name">OrynLauncher</string>
 
     <!-- Action bar part -->
 
@@ -266,7 +266,7 @@
     <string name="preference_gyro_sample_rate_title">गाइरोस्कोप सैंपलिंग रेट</string>
     <string name="preference_gyro_sample_rate_description">अगर आपको गाइरोस्कोप कंट्रोल्स के साथ प्रदर्शन संबंधी समस्याएँ आती हैं, तो इसे बढ़ाएँ।</string>
     <string name="microsoft_login_retry_later">बहुत ज़्यादा रिक्वेस्ट हैं, कृपया बाद में फिर से प्रयास करें।</string>
-    <string name="storage_required">मोजो लॉन्चर को बाहरी स्टोरेज अटैच होना ज़रूरी है। कृपया इसे फिर से कनेक्ट करें और ऐप रीस्टार्ट करें।</string>
+    <string name="storage_required">ओरिन लॉन्चर को बाहरी स्टोरेज अटैच होना ज़रूरी है। कृपया इसे फिर से कनेक्ट करें और ऐप रीस्टार्ट करें।</string>
     <string name="mcl_setting_title_buttonallcaps">बटन लेबल में केवल बड़े अक्षरों का उपयोग करें</string>
     <string name="mcl_setting_subtitle_buttonallcaps">यदि आप अपने कंट्रोल्स में छोटे अक्षरों का उपयोग करना चाहते हैं तो इसे डिसेबल करें।</string>
     <string name="create_instance">नया इंस्टेंस बनाएँ</string>
@@ -362,7 +362,7 @@
     <string name="preference_category_miscellaneous">अन्य सेटिंग्स</string>
     <string name="preference_category_video">वीडियो सेटिंग्स</string>
     <string name="notification_permission_dialog_title">अनुमति अनुरोध</string>
-    <string name="notification_permission_dialog_text">जब आप ऐप से बाहर निकलते हैं तो गेम/मॉडपैक डाउनलोड्स को रुकने से रोकने के लिए मोजो लॉन्चर को नोटिफिकेशन्स पोस्ट करने की अनुमति चाहिए। इस अनुमति के बिना, जब आप मोजो लॉन्चर को बैकग्राउंड मोड में डालते हैं तो Android आपके डाउनलोड्स को बंद कर सकता है।</string>
+    <string name="notification_permission_dialog_text">जब आप ऐप से बाहर निकलते हैं तो गेम/मॉडपैक डाउनलोड्स को रुकने से रोकने के लिए ओरिन लॉन्चर को नोटिफिकेशन्स पोस्ट करने की अनुमति चाहिए। इस अनुमति के बिना, जब आप ओरिन लॉन्चर को बैकग्राउंड मोड में डालते हैं तो Android आपके डाउनलोड्स को बंद कर सकता है।</string>
     <string name="notification_permission_toast">आप सेटिंग्स में जाकर बाद में कभी भी अपना मन बदल सकते हैं।</string>
     <string name="preference_ask_for_notification_title">नोटिफिकेशन्स की अनुमति दें</string>
     <string name="preference_ask_for_notification_description">नोटिफिकेशन अनुमति को फिर से रिक्वेस्ट करने के लिए क्लिक करें, गेम/मॉडपैक बैकग्राउंड डाउनलोड्स के सही ढंग से काम करने के लिए इसकी आवश्यकता है।</string>
