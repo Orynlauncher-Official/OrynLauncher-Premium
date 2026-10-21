@@ -1,0 +1,89 @@
+name: Import Mojo source and build OrynLauncher Premium
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: premium-source-import
+  cancel-in-progress: false
+
+jobs:
+  import-and-build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    steps:
+      - name: Checkout Premium repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Import MojoLauncher v3_openjdk source and submodules
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --depth 1 --branch v3_openjdk --recurse-submodules --shallow-submodules https://github.com/MojoLauncher/MojoLauncher.git /tmp/mojo
+          rsync -a --delete --exclude='/.git/' /tmp/mojo/ ./
+          # Never copy upstream signing keystores or local API-key files into this repository.
+          find . -type f \( -name '*.jks' -o -name '*.keystore' -o -name 'curseforge_key.txt' \) -not -path './.git/*' -delete
+          # Use Android's generated debug signing key; do not commit upstream signing material.
+          sed -i '/storeFile file("debug.keystore")/d; /storePassword "android"/d; /keyAlias "androiddebugkey"/d; /keyPassword "android"/d; /signingConfig signingConfigs.customDebug/d' app_mojo/build.gradle
+          sed -i "s/rootProject.name='MojoLauncher'/rootProject.name='OrynLauncher Premium'/" settings.gradle
+          # Give the Android app a distinct package identity while preserving native library names and paths.
+          sed -i "s/namespace 'git.artdeell.mojo'/namespace 'com.orynlauncher.premium'/" app_mojo/build.gradle
+          sed -i 's/applicationId "git.artdeell.mjlaunch"/applicationId "com.orynlauncher.premium"/' app_mojo/build.gradle
+          sed -i "s/'git.artdeell.mjlaunch.debug'/'com.orynlauncher.premium.debug'/g; s/'git.artdeell.mjlaunch.scoped.gamefolder.debug'/'com.orynlauncher.premium.scoped.gamefolder.debug'/g; s/'git.artdeell.mjlaunch.scoped.gamefolder'/'com.orynlauncher.premium.scoped.gamefolder'/g; s/'git.artdeell.mjlaunch'/'com.orynlauncher.premium'/g; s/'git.artdeell'/'com.orynlauncher.premium'/g" app_mojo/build.gradle
+          # Update visible launcher name when the upstream resource exists.
+          find app_mojo/src/main/res -name 'strings.xml' -print0 | while IFS= read -r -d '' f; do
+            sed -i 's/>MojoLauncher</>OrynLauncher Premium</g; s/>Mojo Launcher</>OrynLauncher Premium</g' "$f"
+          done
+          # Preserve the upstream license and third-party notices; document the fork.
+          cat > ORYN_PREMIUM_NOTICE.md <<'EOF'
+          # OrynLauncher Premium — source and licensing notice
+
+          This project is an independent derivative based on MojoLauncher (branch `v3_openjdk`) and its upstream PojavLauncher-derived components. The upstream source is licensed under GNU LGPL-3.0; retain the upstream `LICENSE` and relevant copyright notices. This repository does not claim ownership of upstream code or third-party components.
+
+          Third-party components have their own licenses and notices. Consult `README.md`, upstream component repositories, and their bundled license files before redistributing binaries. Native rendering components and submodules are retained to preserve the original technical base.
+
+          Upstream: https://github.com/MojoLauncher/MojoLauncher
+          Branding and package changes do not change the license obligations. Changes to LGPL-covered files must remain available under the applicable LGPL terms. This project is not an official MojoLauncher release.
+          EOF
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Import MojoLauncher source as OrynLauncher Premium"
+            git push origin HEAD:main
+          fi
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK and NDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android NDK
+        run: sdkmanager "ndk;29.0.14206865"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.14.5'
+
+      - name: Build full runtime debug APK
+        run: gradle :app_mojo:assembleFullDebug --stacktrace
+
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: OrynLauncher-Premium-Debug-APK
+          path: app_mojo/build/outputs/apk/full/debug/*.apk
+          if-no-files-found: error
+          retention-days: 14
