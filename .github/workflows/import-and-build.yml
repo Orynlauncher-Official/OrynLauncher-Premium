@@ -22,26 +22,30 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Import MojoLauncher v3_openjdk source and submodules
+      - name: Import MojoLauncher source and rename app module
         shell: bash
         run: |
           set -euo pipefail
           git clone --depth 1 --branch v3_openjdk --recurse-submodules --shallow-submodules https://github.com/MojoLauncher/MojoLauncher.git /tmp/mojo
           rsync -a --delete --exclude='.git' --exclude='.github' --filter='protect /.github/workflows/import-and-build.yml' /tmp/mojo/ ./
+          # Rename the Android application module while preserving native libraries and submodules.
+          mv app_mojo app_orynaluncher
+          # Update module references throughout tracked text files, including Gradle settings.
+          grep -Ilr --exclude-dir=.git --exclude-dir=.github 'app_mojo' . | xargs -r sed -i 's/app_mojo/app_orynaluncher/g'
           # Never copy upstream signing keystores or local API-key files into this repository.
           find . -type f \( -name '*.jks' -o -name '*.keystore' -o -name 'curseforge_key.txt' \) -not -path './.git/*' -delete
           # Use Android's generated debug signing key; do not commit upstream signing material.
-          sed -i '/storeFile file("debug.keystore")/d; /storePassword "android"/d; /keyAlias "androiddebugkey"/d; /keyPassword "android"/d; /signingConfig signingConfigs.customDebug/d' app_mojo/build.gradle
+          sed -i '/storeFile file("debug.keystore")/d; /storePassword "android"/d; /keyAlias "androiddebugkey"/d; /keyPassword "android"/d; /signingConfig signingConfigs.customDebug/d' app_orynaluncher/build.gradle
           sed -i "s/rootProject.name='MojoLauncher'/rootProject.name='OrynLauncher Premium'/" settings.gradle
           # Give the Android app a distinct package identity while preserving native library names and paths.
-          sed -i "s/namespace 'git.artdeell.mojo'/namespace 'com.orynlauncher.premium'/" app_mojo/build.gradle
-          sed -i 's/applicationId "git.artdeell.mjlaunch"/applicationId "com.orynlauncher.premium"/' app_mojo/build.gradle
-          sed -i "s/'git.artdeell.mjlaunch.debug'/'com.orynlauncher.premium.debug'/g; s/'git.artdeell.mjlaunch.scoped.gamefolder.debug'/'com.orynlauncher.premium.scoped.gamefolder.debug'/g; s/'git.artdeell.mjlaunch.scoped.gamefolder'/'com.orynlauncher.premium.scoped.gamefolder'/g; s/'git.artdeell.mjlaunch'/'com.orynlauncher.premium'/g; s/'git.artdeell'/'com.orynlauncher.premium'/g" app_mojo/build.gradle
+          sed -i "s/namespace 'git.artdeell.mojo'/namespace 'com.orynlauncher.premium'/" app_orynaluncher/build.gradle
+          sed -i 's/applicationId "git.artdeell.mjlaunch"/applicationId "com.orynlauncher.premium"/' app_orynaluncher/build.gradle
+          sed -i "s/'git.artdeell.mjlaunch.debug'/'com.orynlauncher.premium.debug'/g; s/'git.artdeell.mjlaunch.scoped.gamefolder.debug'/'com.orynlauncher.premium.scoped.gamefolder.debug'/g; s/'git.artdeell.mjlaunch.scoped.gamefolder'/'com.orynlauncher.premium.scoped.gamefolder'/g; s/'git.artdeell.mjlaunch'/'com.orynlauncher.premium'/g; s/'git.artdeell'/'com.orynlauncher.premium'/g" app_orynaluncher/build.gradle
           # Update visible launcher name when the upstream resource exists.
-          find app_mojo/src/main/res -name 'strings.xml' -print0 | while IFS= read -r -d '' f; do
+          find app_orynaluncher/src/main/res -name 'strings.xml' -print0 | while IFS= read -r -d '' f; do
             sed -i 's/>MojoLauncher</>OrynLauncher Premium</g; s/>Mojo Launcher</>OrynLauncher Premium</g; s/<string name="app_short_name">[^<]*<\//<string name="app_short_name">OrynLauncher Premium<\//g' "$f"
           done
-          # Preserve the upstream license and third-party notices; document the fork.
+          # Preserve upstream licensing notices.
           cat > ORYN_PREMIUM_NOTICE.md <<'EOF'
           # OrynLauncher Premium — source and licensing notice
 
@@ -56,7 +60,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           if ! git diff --cached --quiet; then
-            git commit -m "Import MojoLauncher source as OrynLauncher Premium"
+            git commit -m "Rename app_mojo module to app_orynaluncher"
             git pull --rebase origin main
             git push origin HEAD:main
           fi
@@ -67,7 +71,7 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Set up Android SDK and NDK
+      - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
       - name: Install Android NDK
@@ -78,13 +82,13 @@ jobs:
         with:
           gradle-version: '8.14.5'
 
-      - name: Build full runtime debug APK
-        run: gradle :app_mojo:assembleFullDebug --stacktrace
+      - name: Build OrynLauncher Premium debug APK
+        run: gradle :app_orynaluncher:assembleFullDebug --stacktrace
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
         with:
           name: OrynLauncher-Premium-Debug-APK
-          path: app_mojo/build/outputs/apk/full/debug/*.apk
+          path: app_orynaluncher/build/outputs/apk/full/debug/*.apk
           if-no-files-found: error
           retention-days: 14
