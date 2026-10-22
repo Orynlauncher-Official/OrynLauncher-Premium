@@ -1,4 +1,4 @@
-name: Import Mojo source and build OrynLauncher Premium
+name: OrynLauncher plus premium apk
 
 on:
   push:
