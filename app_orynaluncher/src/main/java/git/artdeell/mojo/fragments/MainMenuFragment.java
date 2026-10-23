@@ -91,11 +91,23 @@ public class MainMenuFragment extends Fragment {
     public void onResume() {
         super.onResume();
         View background = requireActivity().findViewById(R.id._background_display_view);
-        if (background != null) background.setVisibility(View.VISIBLE);
         if (background instanceof git.artdeell.mojo.AnimatedHomeBackgroundView) {
-            ((git.artdeell.mojo.AnimatedHomeBackgroundView) background).loadPreferences();
+            git.artdeell.mojo.AnimatedHomeBackgroundView homeBackground =
+                    (git.artdeell.mojo.AnimatedHomeBackgroundView) background;
+            homeBackground.setVisibility(View.VISIBLE);
+            homeBackground.setHomeVisible(true);
+            homeBackground.loadPreferences();
         }
         ExtraCore.setValue(ExtraConstants.REFRESH_ACCOUNT_SPINNER, true);
+    }
+
+    @Override
+    public void onPause() {
+        View background = requireActivity().findViewById(R.id._background_display_view);
+        if (background instanceof git.artdeell.mojo.AnimatedHomeBackgroundView) {
+            ((git.artdeell.mojo.AnimatedHomeBackgroundView) background).setHomeVisible(false);
+        }
+        super.onPause();
     }
 
     private void runInstallerWithConfirmation() {
