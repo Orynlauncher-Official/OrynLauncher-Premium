@@ -9,6 +9,14 @@
 
     <git.artdeell.mojo.prefs.BackButtonPreference />
 
+    <PreferenceCategory android:title="Appearance">
+        <Preference
+            android:key="home_background_setting"
+            android:title="Home Screen Background"
+            android:summary="Choose an animated Minecraft-inspired home background"
+            android:icon="@drawable/ic_px_image" />
+    </PreferenceCategory>
+
     <PreferenceCategory
         android:title="@string/preference_category_main_categories"
         >

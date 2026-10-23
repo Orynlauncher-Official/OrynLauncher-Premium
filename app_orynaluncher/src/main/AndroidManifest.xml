@@ -54,7 +54,7 @@
             android:exported="true"
             android:label="@string/app_short_name"
             android:launchMode="singleTop"
-            android:screenOrientation="sensorLandscape">
+            android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -64,7 +64,7 @@
         <activity
             android:name=".LauncherActivity"
             android:label="@string/app_short_name"
-            android:screenOrientation="sensorLandscape"
+            android:screenOrientation="fullSensor"
             android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".ImportControlActivity"

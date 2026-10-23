@@ -26,6 +26,8 @@ public class LauncherPreferenceFragment extends PreferenceFragmentCompat impleme
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         view.setBackgroundColor(getResources().getColor(R.color.background_app));
+        View homeBackground = requireActivity().findViewById(R.id._background_display_view);
+        if (homeBackground != null) homeBackground.setVisibility(View.INVISIBLE);
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -33,6 +35,15 @@ public class LauncherPreferenceFragment extends PreferenceFragmentCompat impleme
     public void onCreatePreferences(Bundle b, String str) {
         mVisibilityUpdater = this::updateVisibility;
         addPreferencesFromResource(R.xml.pref_main);
+        Preference backgroundPreference = findPreference("home_background_setting");
+        if (backgroundPreference != null) {
+            backgroundPreference.setOnPreferenceClickListener(preference -> {
+                git.artdeell.mojo.Tools.swapFragment(getLauncherActivity(),
+                        git.artdeell.mojo.fragments.HomeBackgroundSettingsFragment.class,
+                        "HOME_BACKGROUND_SETTINGS", null);
+                return true;
+            });
+        }
         setupNotificationRequestPreference();
     }
 
