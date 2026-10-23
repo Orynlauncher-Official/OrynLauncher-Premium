@@ -26,6 +26,8 @@ public class LauncherPreferenceFragment extends PreferenceFragmentCompat impleme
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         view.setBackgroundColor(getResources().getColor(R.color.background_app));
+        View homeBackground = requireActivity().findViewById(R.id._background_display_view);
+        if (homeBackground != null) homeBackground.setVisibility(View.INVISIBLE);
         super.onViewCreated(view, savedInstanceState);
     }
 
