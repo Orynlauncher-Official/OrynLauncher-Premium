@@ -13,11 +13,11 @@ import android.view.View;
 /** Procedural, lightweight pixel-art scenery with bounded animation work. */
 public final class AnimatedHomeBackgroundView extends View {
  public static final String PREFS="oryn_home_background",KEY_ID="background_id",KEY_ANIMATION="animation_enabled",KEY_INTENSITY="animation_intensity",DEFAULT_ID="overworld";
- private final Paint p=new Paint(Paint.ANTI_ALIAS_FLAG); private String scene=DEFAULT_ID; private boolean animate=true,active; private float intensity=.65f; private long started;
+ private final Paint p=new Paint(Paint.ANTI_ALIAS_FLAG); private String scene=DEFAULT_ID; private boolean animate=true,active,homeVisible=true; private float intensity=.65f; private long started;
  public AnimatedHomeBackgroundView(Context c){super(c);init();} public AnimatedHomeBackgroundView(Context c,AttributeSet a){super(c,a);init();} public AnimatedHomeBackgroundView(Context c,AttributeSet a,int d){super(c,a,d);init();}
  private void init(){setClickable(false);setFocusable(false);loadPreferences();}
  public void loadPreferences(){SharedPreferences s=getContext().getSharedPreferences(PREFS,Context.MODE_PRIVATE);scene=s.getString(KEY_ID,DEFAULT_ID);animate=s.getBoolean(KEY_ANIMATION,true);intensity=s.getInt(KEY_INTENSITY,65)/100f;invalidate();}
- public void setScene(String id,boolean enabled,float strength){scene=id==null?DEFAULT_ID:id;animate=enabled;intensity=Math.max(0,Math.min(1,strength));invalidate();}
+ public void setScene(String id,boolean enabled,float strength){scene=id==null?DEFAULT_ID:id;animate=enabled;intensity=Math.max(0,Math.min(1,strength));invalidate();}\n public void setHomeVisible(boolean visible){homeVisible=visible;if(visible&&animate&&active)invalidate();}
  @Override protected void onAttachedToWindow(){super.onAttachedToWindow();active=true;started=System.currentTimeMillis();if(animate&&getWindowVisibility()==VISIBLE)postInvalidateOnAnimation();}
  @Override protected void onDetachedFromWindow(){active=false;super.onDetachedFromWindow();}
  @Override protected void onWindowVisibilityChanged(int v){super.onWindowVisibilityChanged(v);if(v==VISIBLE&&active&&animate&&hasWindowFocus())invalidate();}
