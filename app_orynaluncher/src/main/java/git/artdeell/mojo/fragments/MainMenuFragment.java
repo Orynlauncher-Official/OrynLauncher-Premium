@@ -90,6 +90,10 @@ public class MainMenuFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        View background = getView() == null ? null : getView().findViewById(R.id._background_display_view);
+        if (background instanceof git.artdeell.mojo.AnimatedHomeBackgroundView) {
+            ((git.artdeell.mojo.AnimatedHomeBackgroundView) background).loadPreferences();
+        }
         ExtraCore.setValue(ExtraConstants.REFRESH_ACCOUNT_SPINNER, true);
     }
 
