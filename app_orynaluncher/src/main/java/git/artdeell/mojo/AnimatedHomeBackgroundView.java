@@ -15,13 +15,14 @@ public final class AnimatedHomeBackgroundView extends View {
  public static final String PREFS="oryn_home_background",KEY_ID="background_id",KEY_ANIMATION="animation_enabled",KEY_INTENSITY="animation_intensity",DEFAULT_ID="overworld";
  private final Paint p=new Paint(Paint.ANTI_ALIAS_FLAG); private String scene=DEFAULT_ID; private boolean animate=true,active; private float intensity=.65f; private long started;
  public AnimatedHomeBackgroundView(Context c){super(c);init();} public AnimatedHomeBackgroundView(Context c,AttributeSet a){super(c,a);init();} public AnimatedHomeBackgroundView(Context c,AttributeSet a,int d){super(c,a,d);init();}
- private void init(){setClickable(false);setFocusable(false);setLayerType(View.LAYER_TYPE_SOFTWARE,null);loadPreferences();}
+ private void init(){setClickable(false);setFocusable(false);loadPreferences();}
  public void loadPreferences(){SharedPreferences s=getContext().getSharedPreferences(PREFS,Context.MODE_PRIVATE);scene=s.getString(KEY_ID,DEFAULT_ID);animate=s.getBoolean(KEY_ANIMATION,true);intensity=s.getInt(KEY_INTENSITY,65)/100f;invalidate();}
  public void setScene(String id,boolean enabled,float strength){scene=id==null?DEFAULT_ID:id;animate=enabled;intensity=Math.max(0,Math.min(1,strength));invalidate();}
  @Override protected void onAttachedToWindow(){super.onAttachedToWindow();active=true;started=System.currentTimeMillis();if(animate&&getWindowVisibility()==VISIBLE)postInvalidateOnAnimation();}
  @Override protected void onDetachedFromWindow(){active=false;super.onDetachedFromWindow();}
- @Override protected void onWindowVisibilityChanged(int v){super.onWindowVisibilityChanged(v);if(v==VISIBLE&&active&&animate)invalidate();}
- @Override protected void onDraw(Canvas c){super.onDraw(c);float w=getWidth(),h=getHeight();if(w<=0||h<=0)return;float t=animate?(System.currentTimeMillis()-started)/1000f:0;drawScene(c,w,h,t);if(animate&&active&&getWindowVisibility()==VISIBLE)postInvalidateDelayed(40);}
+ @Override protected void onWindowVisibilityChanged(int v){super.onWindowVisibilityChanged(v);if(v==VISIBLE&&active&&animate&&hasWindowFocus())invalidate();}
+ @Override public void onWindowFocusChanged(boolean focused){super.onWindowFocusChanged(focused);if(focused&&active&&animate)invalidate();}
+ @Override protected void onDraw(Canvas c){super.onDraw(c);float w=getWidth(),h=getHeight();if(w<=0||h<=0)return;float t=animate?(System.currentTimeMillis()-started)/1000f:0;drawScene(c,w,h,t);if(animate&&active&&getWindowVisibility()==VISIBLE&&hasWindowFocus())postInvalidateDelayed(40);}
  private void drawScene(Canvas c,float w,float h,float t){
   int top,bottom; switch(scene){case "cherry":top=0xff29263d;bottom=0xff6b526c;break;case "snow":top=0xff182d43;bottom=0xff9ab8c8;break;case "night":top=0xff080e28;bottom=0xff35446a;break;case "nether":top=0xff24090f;bottom=0xff812a25;break;case "ocean":top=0xff092c42;bottom=0xff087b87;break;case "aurora":top=0xff07172d;bottom=0xff234a58;break;case "rain":top=0xff182630;bottom=0xff46545b;break;default:top=0xff102b36;bottom=0xff49745c;}
   p.setShader(new LinearGradient(0,0,0,h,top,bottom,Shader.TileMode.CLAMP));c.drawRect(0,0,w,h,p);p.setShader(null);float u=Math.max(5,w/100f);
