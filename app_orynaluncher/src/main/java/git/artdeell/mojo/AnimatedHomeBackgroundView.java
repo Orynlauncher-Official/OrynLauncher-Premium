@@ -17,7 +17,8 @@ public final class AnimatedHomeBackgroundView extends View {
  public AnimatedHomeBackgroundView(Context c){super(c);init();} public AnimatedHomeBackgroundView(Context c,AttributeSet a){super(c,a);init();} public AnimatedHomeBackgroundView(Context c,AttributeSet a,int d){super(c,a,d);init();}
  private void init(){setClickable(false);setFocusable(false);loadPreferences();}
  public void loadPreferences(){SharedPreferences s=getContext().getSharedPreferences(PREFS,Context.MODE_PRIVATE);scene=s.getString(KEY_ID,DEFAULT_ID);animate=s.getBoolean(KEY_ANIMATION,true);intensity=s.getInt(KEY_INTENSITY,65)/100f;invalidate();}
- public void setScene(String id,boolean enabled,float strength){scene=id==null?DEFAULT_ID:id;animate=enabled;intensity=Math.max(0,Math.min(1,strength));invalidate();}\n public void setHomeVisible(boolean visible){homeVisible=visible;if(visible&&animate&&active)invalidate();}
+ public void setScene(String id,boolean enabled,float strength){scene=id==null?DEFAULT_ID:id;animate=enabled;intensity=Math.max(0,Math.min(1,strength));invalidate();}
+ public void setHomeVisible(boolean visible){homeVisible=visible;if(visible&&animate&&active)invalidate();}
  @Override protected void onAttachedToWindow(){super.onAttachedToWindow();active=true;started=System.currentTimeMillis();if(animate&&getWindowVisibility()==VISIBLE)postInvalidateOnAnimation();}
  @Override protected void onDetachedFromWindow(){active=false;super.onDetachedFromWindow();}
  @Override protected void onWindowVisibilityChanged(int v){super.onWindowVisibilityChanged(v);if(v==VISIBLE&&active&&animate&&hasWindowFocus())invalidate();}
