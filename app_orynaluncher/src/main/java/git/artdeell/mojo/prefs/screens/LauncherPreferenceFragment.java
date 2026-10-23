@@ -33,6 +33,15 @@ public class LauncherPreferenceFragment extends PreferenceFragmentCompat impleme
     public void onCreatePreferences(Bundle b, String str) {
         mVisibilityUpdater = this::updateVisibility;
         addPreferencesFromResource(R.xml.pref_main);
+        Preference backgroundPreference = findPreference("home_background_setting");
+        if (backgroundPreference != null) {
+            backgroundPreference.setOnPreferenceClickListener(preference -> {
+                git.artdeell.mojo.Tools.swapFragment(getLauncherActivity(),
+                        git.artdeell.mojo.fragments.HomeBackgroundSettingsFragment.class,
+                        "HOME_BACKGROUND_SETTINGS", null);
+                return true;
+            });
+        }
         setupNotificationRequestPreference();
     }
 
