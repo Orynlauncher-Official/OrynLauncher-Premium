@@ -23,7 +23,7 @@ public final class AnimatedHomeBackgroundView extends View {
  @Override protected void onDetachedFromWindow(){active=false;super.onDetachedFromWindow();}
  @Override protected void onWindowVisibilityChanged(int v){super.onWindowVisibilityChanged(v);if(v==VISIBLE&&active&&animate&&hasWindowFocus())invalidate();}
  @Override public void onWindowFocusChanged(boolean focused){super.onWindowFocusChanged(focused);if(focused&&active&&animate)invalidate();}
- @Override protected void onDraw(Canvas c){super.onDraw(c);float w=getWidth(),h=getHeight();if(w<=0||h<=0)return;float t=animate?(System.currentTimeMillis()-started)/1000f:0;drawScene(c,w,h,t);if(animate&&active&&getWindowVisibility()==VISIBLE&&hasWindowFocus())postInvalidateDelayed(40);}
+ @Override protected void onDraw(Canvas c){super.onDraw(c);float w=getWidth(),h=getHeight();if(w<=0||h<=0)return;float t=animate?(System.currentTimeMillis()-started)/1000f:0;drawScene(c,w,h,t);if(animate&&homeVisible&&active&&getWindowVisibility()==VISIBLE&&hasWindowFocus())postInvalidateDelayed(40);}
  private void drawScene(Canvas c,float w,float h,float t){
   int top,bottom; switch(scene){case "cherry":top=0xff29263d;bottom=0xff6b526c;break;case "snow":top=0xff182d43;bottom=0xff9ab8c8;break;case "night":top=0xff080e28;bottom=0xff35446a;break;case "nether":top=0xff24090f;bottom=0xff812a25;break;case "ocean":top=0xff092c42;bottom=0xff087b87;break;case "aurora":top=0xff07172d;bottom=0xff234a58;break;case "rain":top=0xff182630;bottom=0xff46545b;break;default:top=0xff102b36;bottom=0xff49745c;}
   p.setShader(new LinearGradient(0,0,0,h,top,bottom,Shader.TileMode.CLAMP));c.drawRect(0,0,w,h,p);p.setShader(null);float u=Math.max(5,w/100f);
