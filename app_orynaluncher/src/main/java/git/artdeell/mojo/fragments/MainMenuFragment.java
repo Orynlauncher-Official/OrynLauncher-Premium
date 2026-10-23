@@ -91,6 +91,7 @@ public class MainMenuFragment extends Fragment {
     public void onResume() {
         super.onResume();
         View background = requireActivity().findViewById(R.id._background_display_view);
+        if (background != null) background.setVisibility(View.VISIBLE);
         if (background instanceof git.artdeell.mojo.AnimatedHomeBackgroundView) {
             ((git.artdeell.mojo.AnimatedHomeBackgroundView) background).loadPreferences();
         }
