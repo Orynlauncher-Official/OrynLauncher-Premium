@@ -2,7 +2,7 @@ name: OrynLauncher plus premium apk
 
 on:
   push:
-    branches: [main]
+    branches: [main, feat/animated-home-backgrounds]
   workflow_dispatch:
 
 permissions:
