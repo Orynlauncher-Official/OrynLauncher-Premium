@@ -7,11 +7,10 @@
     android:layout_height="match_parent"
     android:background="#03090C">
 
-    <View
+    <git.artdeell.mojo.AnimatedHomeBackgroundView
         android:id="@+id/_background_display_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#03090C"
         android:translationZ="-1dp" />
 
     <androidx.constraintlayout.widget.Guideline
