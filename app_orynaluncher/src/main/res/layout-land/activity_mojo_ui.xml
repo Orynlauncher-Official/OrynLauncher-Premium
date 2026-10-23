@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     android:background="@android:color/transparent">
 
+    <git.artdeell.mojo.AnimatedHomeBackgroundView
+        android:id="@+id/_background_display_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:translationZ="-1dp" />
+
     <com.kdt.mcgui.AccountSpinner
         android:id="@+id/account_spinner"
         android:layout_width="match_parent"
