@@ -101,12 +101,12 @@
             android:process=":gui_installer"
             android:name=".awt.AWTActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout|keyboard|navigation|uiMode"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="sensorLandscape" />
         <activity
             android:name=".CustomControlsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|keyboard|navigation"
             android:exported="false"
-            android:screenOrientation="fullSensor">
+            android:screenOrientation="sensorLandscape">
             <intent-filter>
                 <action android:name=".CustomControlsActivity" />
 
@@ -118,7 +118,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout|keyboard|navigation|uiMode"
             android:launchMode="singleTop"
             android:process=":game"
-            android:screenOrientation="fullSensor" />
+            android:screenOrientation="sensorLandscape" />
 
         <provider
             android:name=".utils.scoped.FolderProvider"
